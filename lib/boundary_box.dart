@@ -11,9 +11,10 @@ class BoundaryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    print('reached here');
     List<Widget> _renderStrings() {
       return results.map((re) {
+        print(re);
         return Positioned(
           left: (screenW/4),
           bottom: -(screenH-80),
