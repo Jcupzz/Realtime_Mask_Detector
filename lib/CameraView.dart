@@ -4,13 +4,6 @@ import 'package:camera/camera.dart';
 
 List<CameraDescription> cameras;
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  cameras = await availableCameras();
-  runApp(CameraView());
-}
-
 class CameraView extends StatefulWidget {
   @override
   _CameraViewState createState() => _CameraViewState();
@@ -42,8 +35,8 @@ class _CameraViewState extends State<CameraView> {
     if (!controller.value.isInitialized) {
       return Container();
     }
-    return MaterialApp(
-      home: CameraPreview(controller),
+    return Scaffold(
+      body: CameraPreview(controller),
     );
   }
 }
