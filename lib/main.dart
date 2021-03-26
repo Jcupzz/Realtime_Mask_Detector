@@ -1,30 +1,28 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:realtime_mask_detector/CameraView.dart';
 
-void main() {
-  runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final cameras = await availableCameras();
+  final firstCamera = cameras.first;
+  runApp(MyApp(firstCamera: firstCamera,));
 }
 
+
+
 class MyApp extends StatelessWidget {
+  var firstCamera;
+
   // This widget is the root of your application.
+  MyApp({
+  this.firstCamera
+});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: CameraView(),
-    );
-  }
-}
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-
+      home: CameraView(camera: firstCamera,),
     );
   }
 }
